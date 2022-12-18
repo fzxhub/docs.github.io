@@ -1,6 +1,6 @@
 #网站相关设置
-site_name: fzxhub document
-site_url: https://doc.fzxhub.com/
+site_name: fzxhub docs
+site_url: https://docs.fzxhub.com/
 site_author: fzxhub
 
 #主题设置
@@ -42,7 +42,7 @@ extra:
       link: https://github.com/fzxhub
 
 #版权设置
-copyright: Copyright &copy; 2019 - 2022 fzxhub
+copyright: Copyright &copy; 2019 - 2022 fzxhub <a href="https://beian.miit.gov.cn">粤ICP备20033471号</a>
 
 #插件
 plugins:

@@ -6,13 +6,6 @@ hide:
 # 常用网站
 
 
-## 本人网站
-
-**[github-fzxhub](https://github.com/fzxhub)**
-
-**[gitee-fzxhub](https://gitee.com/fzxhub)**
-
-
 
 
 ## 单片机、linux、FPGA学习资料下载
