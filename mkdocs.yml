@@ -18,6 +18,11 @@ theme:
     - navigation.tabs.sticky
     - toc.integrate
     - navigation.tracking
+    - navigation.path
+    - toc.follow
+    - navigation.prune
+    - navigation.expand
+    - navigation.sections
 #主题以及主题切换按钮
   palette:
     - scheme: slate
@@ -42,7 +47,7 @@ extra:
       link: https://github.com/fzxhub
 
 #版权设置
-copyright: Copyright &copy; 2019 - 2022 fzxhub <a href="https://beian.miit.gov.cn">粤ICP备20033471号</a>
+copyright: Copyright &copy; 2019 - 2023 fzxhub <a href="https://beian.miit.gov.cn">粤ICP备20033471号</a>
 
 #插件
 plugins:
@@ -55,10 +60,9 @@ plugins:
 #      - linux: holle/?.md  
 
 #仓库设置
-#repo_url: https://github.com/fzxhub/docs_share_mkdocs
-#repo_name: fzxhub/mkdocs
+#repo_url: https://github.com/fzxhub/docs.girhub.io
+#repo_name: fzxhub/docs.girhub.io
 
 #部署到当前仓库gh_pages分支上指令： mkdocs gh-deploy --force
-
 
 
