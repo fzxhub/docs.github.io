@@ -16,7 +16,7 @@ theme:
     - navigation.top
     - navigation.tabs
     - navigation.tabs.sticky
-    - toc.integrate
+    #- toc.integrate      #目录集成到导航栏
     - navigation.tracking
     - navigation.path
     - toc.follow
