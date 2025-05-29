@@ -1,0 +1,3059 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="fzxhub">
+      
+      
+        <link rel="canonical" href="https://docs.fzxhub.com/%E6%A0%87%E5%AE%9A%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/5.XCP%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3/">
+      
+      
+        <link rel="prev" href="../4.XCP%E5%8D%8F%E8%AE%AE%E5%89%96%E6%9E%90/">
+      
+      
+        <link rel="next" href="../6.A2L%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/">
+      
+      
+      <link rel="icon" href="../../assets/logo64x64.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>XCP指令详解 - fzxhub docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#xcp" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="fzxhub docs" class="md-header__button md-logo" aria-label="fzxhub docs" data-md-component="logo">
+      
+  <img src="../../assets/logo64x64.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            fzxhub docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              XCP指令详解
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  主页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../1.%E6%A0%87%E5%AE%9A%E5%8D%8F%E8%AE%AE%E5%8E%9F%E7%90%86/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  标定协议详解
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="fzxhub docs" class="md-nav__button md-logo" aria-label="fzxhub docs" data-md-component="logo">
+      
+  <img src="../../assets/logo64x64.svg" alt="logo">
+
+    </a>
+    fzxhub docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    标定协议详解
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            标定协议详解
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.%E6%A0%87%E5%AE%9A%E5%8D%8F%E8%AE%AE%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    标定协议原理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.CCP%E5%8D%8F%E8%AE%AE%E5%89%96%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CCP协议剖析
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3.CCP%E6%8C%87%E4%BB%A4%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CCP指令详解
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.XCP%E5%8D%8F%E8%AE%AE%E5%89%96%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    XCP协议剖析
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    XCP指令详解
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    XCP指令详解
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#std" class="md-nav__link">
+    <span class="md-ellipsis">
+      标准(STD)指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="标准(STD)指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      必实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="必实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xffconnect" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xFF:CONNECT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xfedisconnect" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xFE:DISCONNECT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xfdget_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xFD:GET_STATUS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xfcsynch" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xFC:SYNCH
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      可选实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可选实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xfbget_comm_mode_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xFB:GET_COMM_MODE_INFO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xfaget_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xFA:GET_ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xf9set_request" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF9:SET_REQUEST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xf8get_seed" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF8:GET_SEED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xf7unlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF7:UNLOCK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xf6set_mta" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF6:SET_MTA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xf5upload" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF5:UPLOAD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xf4short_upload" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF4:SHORT_UPLOAD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xf3build_checksum" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF3:BUILD_CHECKSUM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xf2transport_layer_cmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF2:TRANSPORT_LAYER_CMD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xf1user_cmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF1:USER_CMD
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cal" class="md-nav__link">
+    <span class="md-ellipsis">
+      标定(CAL)指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="标定(CAL)指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      必实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="必实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xf0download" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF0:DOWNLOAD
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      可选实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可选实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xefdownload_next" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xEF:DOWNLOAD_NEXT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xeedownload_max" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xEE:DOWNLOAD_MAX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xedshort_download" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xED:SHORT_DOWNLOAD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xecmodify_bits" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xEC:MODIFY_BITS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pag" class="md-nav__link">
+    <span class="md-ellipsis">
+      页面切换(PAG)指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="页面切换(PAG)指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      必实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="必实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xebset_cal_page" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xEB:SET_CAL_PAGE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xeaget_cal_page" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xEA:GET_CAL_PAGE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      可选实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可选实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xe9get_pag_processor_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE9:GET_PAG_PROCESSOR_INFO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xe8get_segment_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE8:GET_SEGMENT_INFO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xe7get_page_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE7:GET_PAGE_INFO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xe6set_segment_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE6:SET_SEGMENT_MODE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xe5get_segment_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE5:GET_SEGMENT_MODE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xe4copy_cal_page" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE4:COPY_CAL_PAGE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#daq" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据采集(DAQ)指令(静态)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="数据采集(DAQ)指令(静态)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      必实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="必实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xe3clear_daq_list" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE3:CLEAR_DAQ_LIST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xe2set_daq_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE2:SET_DAQ_PTR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xe1write_daq" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE1:WRITE_DAQ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xe0set_daq_list_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE0:SET_DAQ_LIST_MODE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xdfget_daq_list_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xDF:GET_DAQ_LIST_MODE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xdestart_stop_daq_list" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xDE:START_STOP_DAQ_LIST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xddstart_stop_synch" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xDD:START_STOP_SYNCH
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      可选实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可选实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xdcget_daq_clock" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xDC:GET_DAQ_CLOCK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xdbread_daq" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xDB:READ_DAQ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xdaget_daq_processor_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xDA:GET_DAQ_PROCESSOR_INFO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xd9get_daq_resolution_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD9:GET_DAQ_RESOLUTION_INFO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xd8get_daq_list_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD8:GET_DAQ_LIST_INFO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xd7get_daq_event_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD7:GET_DAQ_EVENT_INFO
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#daq_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据采集(DAQ)指令(动态)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="数据采集(DAQ)指令(动态)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      可选实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可选实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xd6free_daq" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD6:FREE_DAQ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xd5alloc_daq" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD5:ALLOC_DAQ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xd4alloc_odt" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD4:ALLOC_ODT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xd3alloc_odt_entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD3:ALLOC_ODT_ENTRY
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pgm" class="md-nav__link">
+    <span class="md-ellipsis">
+      存储器编程(PGM)指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="存储器编程(PGM)指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      必实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="必实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xd2program_start" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD2:PROGRAM_START
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xd1program_clear" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD1:PROGRAM_CLEAR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xd0program" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD0:PROGRAM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xcfprogram_reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xCF:PROGRAM_RESET
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      可选实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可选实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xceget_pgm_processor_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xCE:GET_PGM_PROCESSOR_INFO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xcdget_sector_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xCD:GET_SECTOR_INFO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xccprogram_prepare" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xCC:PROGRAM_PREPARE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xcbprogram_format" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xCB:PROGRAM_FORMAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xcaprogram_next" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xCA:PROGRAM_NEXT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xc9program_max" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xC9:PROGRAM_MAX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xc8program_verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xC8:PROGRAM_VERIFY
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6.A2L%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    A2L文件解析
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7.CCP%E7%A7%BB%E6%A4%8D%E4%B8%8E%E6%B5%8B%E8%AF%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CCP移植与测试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8.XCP%E7%A7%BB%E6%A4%8D%E4%B8%8E%E6%B5%8B%E8%AF%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    XCP移植与测试
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#std" class="md-nav__link">
+    <span class="md-ellipsis">
+      标准(STD)指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="标准(STD)指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      必实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="必实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xffconnect" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xFF:CONNECT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xfedisconnect" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xFE:DISCONNECT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xfdget_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xFD:GET_STATUS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xfcsynch" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xFC:SYNCH
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      可选实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可选实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xfbget_comm_mode_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xFB:GET_COMM_MODE_INFO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xfaget_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xFA:GET_ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xf9set_request" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF9:SET_REQUEST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xf8get_seed" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF8:GET_SEED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xf7unlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF7:UNLOCK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xf6set_mta" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF6:SET_MTA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xf5upload" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF5:UPLOAD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xf4short_upload" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF4:SHORT_UPLOAD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xf3build_checksum" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF3:BUILD_CHECKSUM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xf2transport_layer_cmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF2:TRANSPORT_LAYER_CMD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xf1user_cmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF1:USER_CMD
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cal" class="md-nav__link">
+    <span class="md-ellipsis">
+      标定(CAL)指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="标定(CAL)指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      必实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="必实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xf0download" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xF0:DOWNLOAD
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      可选实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可选实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xefdownload_next" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xEF:DOWNLOAD_NEXT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xeedownload_max" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xEE:DOWNLOAD_MAX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xedshort_download" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xED:SHORT_DOWNLOAD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xecmodify_bits" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xEC:MODIFY_BITS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pag" class="md-nav__link">
+    <span class="md-ellipsis">
+      页面切换(PAG)指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="页面切换(PAG)指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      必实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="必实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xebset_cal_page" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xEB:SET_CAL_PAGE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xeaget_cal_page" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xEA:GET_CAL_PAGE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      可选实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可选实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xe9get_pag_processor_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE9:GET_PAG_PROCESSOR_INFO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xe8get_segment_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE8:GET_SEGMENT_INFO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xe7get_page_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE7:GET_PAGE_INFO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xe6set_segment_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE6:SET_SEGMENT_MODE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xe5get_segment_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE5:GET_SEGMENT_MODE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xe4copy_cal_page" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE4:COPY_CAL_PAGE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#daq" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据采集(DAQ)指令(静态)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="数据采集(DAQ)指令(静态)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      必实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="必实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xe3clear_daq_list" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE3:CLEAR_DAQ_LIST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xe2set_daq_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE2:SET_DAQ_PTR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xe1write_daq" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE1:WRITE_DAQ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xe0set_daq_list_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xE0:SET_DAQ_LIST_MODE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xdfget_daq_list_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xDF:GET_DAQ_LIST_MODE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xdestart_stop_daq_list" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xDE:START_STOP_DAQ_LIST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xddstart_stop_synch" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xDD:START_STOP_SYNCH
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      可选实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可选实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xdcget_daq_clock" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xDC:GET_DAQ_CLOCK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xdbread_daq" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xDB:READ_DAQ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xdaget_daq_processor_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xDA:GET_DAQ_PROCESSOR_INFO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xd9get_daq_resolution_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD9:GET_DAQ_RESOLUTION_INFO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xd8get_daq_list_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD8:GET_DAQ_LIST_INFO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xd7get_daq_event_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD7:GET_DAQ_EVENT_INFO
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#daq_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据采集(DAQ)指令(动态)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="数据采集(DAQ)指令(动态)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      可选实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可选实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xd6free_daq" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD6:FREE_DAQ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xd5alloc_daq" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD5:ALLOC_DAQ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xd4alloc_odt" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD4:ALLOC_ODT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xd3alloc_odt_entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD3:ALLOC_ODT_ENTRY
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pgm" class="md-nav__link">
+    <span class="md-ellipsis">
+      存储器编程(PGM)指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="存储器编程(PGM)指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      必实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="必实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xd2program_start" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD2:PROGRAM_START
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xd1program_clear" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD1:PROGRAM_CLEAR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xd0program" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xD0:PROGRAM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xcfprogram_reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xCF:PROGRAM_RESET
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      可选实现指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可选实现指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0xceget_pgm_processor_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xCE:GET_PGM_PROCESSOR_INFO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xcdget_sector_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xCD:GET_SECTOR_INFO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xccprogram_prepare" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xCC:PROGRAM_PREPARE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xcbprogram_format" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xCB:PROGRAM_FORMAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xcaprogram_next" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xCA:PROGRAM_NEXT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xc9program_max" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xC9:PROGRAM_MAX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0xc8program_verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      0xC8:PROGRAM_VERIFY
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="xcp">XCP指令详解</h1>
+<h2 id="std">标准(STD)指令</h2>
+<h3 id="_1">必实现指令</h3>
+<h4 id="0xffconnect">0xFF:CONNECT</h4>
+<p><img alt="CONNECT" src="CONNECT.png" /></p>
+<p>该命令与从设备建立一个连续的、逻辑的、点到点的连接设备。在运行XCP会话期间(已连接)，此命令对任何XCP会话不没有影响任何XCP从设备的配置。
+从设备在非连接状态时不响应任何其他命令(除了自动检测)。</p>
+<p>Mode参数：</p>
+<ul>
+<li>Mode = 0x00(Normal) 主机可以与从设备启动XCP通信。</li>
+<li>Mode = 0x01(user defined) 主机可以启动XCP通信同时告诉从机它应该进入一个特殊的(用户定义的)模式。</li>
+</ul>
+<p>RESSOURCE参数：</p>
+<ul>
+<li>CAL/PAG、DAQ、STIM、PGM = 1 表示该资源可用，反之不可用。</li>
+</ul>
+<p>COMM_MODE参数：</p>
+<ul>
+<li>ADDRESS_GRANULARITY_1、ADDRESS_GRANULARITY_0：</li>
+<li>00： ADDRESS_GRANULARITY=BYTE    AG=1</li>
+<li>01： ADDRESS_GRANULARITY=WORE    AG=2</li>
+<li>10： ADDRESS_GRANULARITY=DWORD   AG=4</li>
+<li>
+<p>11： ADDRESS_GRANULARITY=保留     AG=保留</p>
+</li>
+<li>
+<p>SLAVE_BLOCK_MODE参数：</p>
+</li>
+<li>1：表示从机块模式可用</li>
+<li>
+<p>0：表示从机块模式不可用</p>
+</li>
+<li>
+<p>OPTIONAL参数：</p>
+</li>
+<li>1：表示支持类型的附加信息的通信模式</li>
+<li>0：表示不支持类型的附加信息的通信模式</li>
+</ul>
+<p>MAX_CTO参数：</p>
+<ul>
+<li>最大CTO大小，单位为字节。</li>
+</ul>
+<p>MAX_DTO参数：</p>
+<ul>
+<li>最大DTO大小，单位为字节。</li>
+</ul>
+<blockquote>
+<p>注意：MAX_CTO、MAX_CTO必须始终满足下列关系：
+MAX_CTO mod AG = 0
+MAX_DTO mod AG = 0
+所有涉及从设备地址范围的长度信息都基于AG(元素)。
+如果长度信息指的是数据流(XCP协议)，则它是基于字节。</p>
+</blockquote>
+<h4 id="0xfedisconnect">0xFE:DISCONNECT</h4>
+<p><img alt="DISCONNECT" src="DISCONNECT.png" /></p>
+<h4 id="0xfdget_status">0xFD:GET_STATUS</h4>
+<p><img alt="GET_STATUS" src="GET_STATUS.png" /></p>
+<p>Session参数：</p>
+<ul>
+<li>STORE_CAL_REQ：STORE_CAL_REQ = 1标志表示保存校准数据到非易失性内存的挂起请求。一旦请求被满足，从设备将重置该位。从设备可以通过传输EV_STORE_CAL来指示。</li>
+<li>STORE_DAQ_REQ：STORE_DAQ_REQ = 1标志表示保存DAQ列表设置到非易失性内存的挂起请求。一旦请求被满足，从设备将重置该位。从设备可以通过传输EV_STORE_DAQ来指示。</li>
+<li>CLEAR_DAQ_REQ：CLEAR_DAQ_REQ = 1标志表示清除所有非易失中DAQ列表的挂起请求。所有ODT表项重置为address = 0, extension = 0, size = 0, bit_offset = FF。会话配置ID重置为0。一旦请求得到满足，从设备将重置该位。从设备可以通过发送信号EV_CLEAR_DAQ来指示。
+  如果从设备不支持所请求的模式，返回ERR_OUT_OF_RANGE。</li>
+<li>DAQ_RUNNING=1：表示至少有一个DAQ列表已经启动并处于状态运行模式。</li>
+<li>RESUME=1：表示从机处于RESUME模式。</li>
+</ul>
+<p>Protection参数：</p>
+<ul>
+<li>CAL/PAG：CAL/PAG = 1 表示该资源受保护需要解锁才能使用。</li>
+<li>DAQ：DAQ = 1 表示该资源受保护需要解锁才能使用。</li>
+<li>STIM：STIM = 1 表示该资源受保护需要解锁才能使用。</li>
+<li>PGM：PGM = 1 表示该资源受保护需要解锁才能使用。</li>
+</ul>
+<blockquote>
+<p>标准命令永远不会被保护</p>
+</blockquote>
+<h4 id="0xfcsynch">0xFC:SYNCH</h4>
+<p><img alt="SYNCH" src="SYNCH.png" /></p>
+<p>该命令用于同步超时后的命令执行，SYNCH命令将始终有一个带有错误代码的否定响应ERR_CMD_SYNCH。没有其他命令使用此错误代码。</p>
+<h3 id="_2">可选实现指令</h3>
+<h4 id="0xfbget_comm_mode_info">0xFB:GET_COMM_MODE_INFO</h4>
+<p><img alt="GET_COMM_MODE_INFO" src="GET_COMM_MODE_INFO.png" /></p>
+<p>COMM_MODE参数：</p>
+<ul>
+<li>MASTER_BLOCK_MODE参数：表示主设备的块模式是否可用。如果支持主设备块模式：</li>
+<li>则MAX_BS为允许的最大块大小作为连续命令包的数量(DOWNLOAD_NEXT或PROGRAM_NEXT)。</li>
+<li>
+<p>MIN_ST所需的最小值，是一个块的数据包从主设备传输到从设备的分离时间，单位为100微秒。</p>
+</li>
+<li>
+<p>INTERLEAVED_MODE参数：表示交错模式是否可用。如果存在交错模式：</p>
+</li>
+<li>QUEUE_SIZE为最大数目。主站可以向从站的接收队列发送连续的命令包。</li>
+</ul>
+<h4 id="0xfaget_id">0xFA:GET_ID</h4>
+<p><img alt="GET_ID" src="GET_ID.png" /></p>
+<p>Type参数：</p>
+<ul>
+<li>0：ASCII文本</li>
+<li>1：ASAM-MC2文件名，没有路径和扩展</li>
+<li>2：ASAM-MC2文件名，有路径和扩展</li>
+<li>3：ASAM-MC2文件所在的URL路径</li>
+<li>4：ASAM-MC2文件上传</li>
+<li>128-255：自定义</li>
+</ul>
+<p>Length参数：</p>
+<ul>
+<li>指定标识中的字节数。如果length为0，则请求的标识类型不可用。</li>
+<li>数据元素是BYTE, WORD或DWORD，取决于AG。</li>
+<li>Mode=0时，从设备将MTA (Memory Transfer Address)设置为当前地址。主设备可以使用一个或多个UPLOAD命令。</li>
+<li>标识字符串是ASCII文本格式，它没有0结尾。</li>
+</ul>
+<h4 id="0xf9set_request">0xF9:SET_REQUEST</h4>
+<p><img alt="SET_REQUEST" src="SET_REQUEST.png" /></p>
+<p>Mode参数：</p>
+<ul>
+<li>STORE_CAL_REQ：标记了将校准数据保存到非易失性内存中的请求。可以通过GET_STATUS获取的STORE_CAL_REQ位，该位将被从机重置当请求已完成。从设备可以通过传输EV_STORE_CAL来指示传输。</li>
+<li>STORE_DAQ_REQ：标记了一个保存所有DAQ列表的请求。目标是START_STOP_DAQ_LIST指令选择的非易失性内存。从设备还必须存储非易失性内存中的会话配置id。在保存时，从设备首先必须清除可能已经存在的任何DAQ列表配置。可以通过GET_STATUS获得的STORE_DAQ_REQ位，该位将被从机重置当请求已完成。从设备可以通过传输EV_STORE_DAQ来指示传输。</li>
+<li>CLEAR_DAQ_REQ用于清除非易失性内存中的所有DAQ列表。所有ODT条目reset address = 0, extension = 0, size = 0, bit_offset = FF，会话配置ID重置为0。通过GET_STATUS获得的CLEAR_DAQ_REQ位，该位将被从机重置当请求已完成。从设备可以通过传输EV_CLEAR_DAQ来指示。</li>
+</ul>
+<blockquote>
+<p>如果从设备不支持所请求的模式，则返回ERR_OUT_OF_RANGE。</p>
+</blockquote>
+<h4 id="0xf8get_seed">0xF8:GET_SEED</h4>
+<p><img alt="GET_SEED" src="GET_SEED.png" /></p>
+<p>Mode参数：</p>
+<ul>
+<li>Mode=0：第一部分种子获取</li>
+<li>Mode=1：剩余种子获取</li>
+</ul>
+<p>Resource参数：</p>
+<ul>
+<li>Mode=0：Resource=需要解锁的资源</li>
+<li>Mode=1：Resource不关心</li>
+</ul>
+<p>Length参数：</p>
+<ul>
+<li>Mode=0：Length=主设备请求种子总长度。</li>
+<li>Mode=1：Length=主设备请求种子剩余长度。(Length大于MAX_CTO-2是才使用该模式)</li>
+</ul>
+<blockquote>
+<p>主设备必须在定义的顺序中使用GET_SEED(Mode=1)和GET_SEED(Mode= 0)。
+如果主设备直接发送GET_SEED(Mode=1)，而不在之前使用GET_SEED(Mode=0)，从服务器返回一个ERR_SEQUENCE为负响应。</p>
+</blockquote>
+<p>Resource参数：</p>
+<ul>
+<li>请参阅GET_STATUS(资源保护状态)命令。</li>
+</ul>
+<blockquote>
+<p>一个GET_SEED命令只能请求一个资源。如果不止一个资源必须被解锁，(GET_SEED+UNLOCK)序列必须执行多次。主服务器不请求任何资源或请求多个资源，从机将响应ERR_OUT_OF_RANGE。</p>
+</blockquote>
+<h4 id="0xf7unlock">0xF7:UNLOCK</h4>
+<p><img alt="UNLOCK" src="UNLOCK.png" /></p>
+<p>使用种子算的密钥来解锁从机的安全保护。种子由之前的GET_SEED序列获得。
+Length参数：</p>
+<ul>
+<li>表示剩余密钥字节数。</li>
+<li>主机必须在定义的序列中使用UNLOCK和GET_SEED。如果之前只有一个GET_SEED，主服务器只能发送一个UNLOCK序列。</li>
+<li>如果密钥的总长度大于MAX_CTO-2，主服务器必须发送剩余的密钥字节，连续的UNLOCK命令包含剩余的键的长度。</li>
+</ul>
+<blockquote>
+<p>如果主服务器不尊重这个序列，从服务器返回ERR_SEQUENCE为负响应。
+完成UNLOCK序列后检查密钥。如果钥匙不被接受，将返回ERR_ACCESS_LOCKED。从设备将转到断开连接状态。使用正确的密钥重复UNLOCK序列将会有一个积极的响应，没有其他影响。</p>
+</blockquote>
+<p>Example:
+MAX_CTO = 8 bytes (CAN) 
+Seed = 11 22 33 44<br />
+TotalLengthOf(seed) = 4 bytes 
+Key = 43 21<br />
+TotalLengthOf(key) = 2 bytes </p>
+<p><img alt="解锁例子1" src="UNLOCK_Example.png" /></p>
+<p>MAX_CTO = 8 bytes (CAN) 
+Seed = 99 88 77 66 55 44 33 22 11 00 11 22 33 44 55 66 77 88 99<br />
+TotalLengthOf(seed) = 19 bytes 
+Key = 98 76 54 32 10 01 23 45 67 89<br />
+TotalLengthOf(key) = 10 bytes </p>
+<p><img alt="解锁例子2" src="UNLOCK_Example2.png" /></p>
+<h4 id="0xf6set_mta">0xF6:SET_MTA</h4>
+<p><img alt="SET_MTA" src="SET_MTA.png" /></p>
+<p>这个命令将内存初始化一个指针(32位地址+ 8位扩展)转移指令。</p>
+<blockquote>
+<p>MTA用于命令BUILD_CHECKSUM, UPLOAD, DOWNLOAD，DOWNLOAD_MAX, MODIFY_BITS, PROGRAM_CLEAR，PROGRAM和PROGRAM_MAX。</p>
+</blockquote>
+<h4 id="0xf5upload">0xF5:UPLOAD</h4>
+<p><img alt="UPLOAD" src="UPLOAD.png" /></p>
+<p>从当前MTA开始，将返回指定长度的数据块。MTA将按给定的数据元素数量后递增。</p>
+<ul>
+<li>根据AG的不同，必须使用1、2或3个对齐字节来满足对齐要求。</li>
+<li>元素是BYTE、WORD或DWORD，取决于AG。</li>
+</ul>
+<p>如果从机不支持块传输模式</p>
+<ul>
+<li>则所有上传的数据都以单个响应包方式传输，因此请求中的数据元素数量参数必须在[1..MAX_CTO-1]范围内。</li>
+<li>如果数据元素个数大于MAX_CTO-1，返回ERR_OUT_OF_RANGE。</li>
+</ul>
+<p>如果支持块传输方式，</p>
+<ul>
+<li>则上传的数据在多个响应中传输在同一个请求包上。</li>
+<li>对于master，不允许有任何限制最大块大小。因此数据元素的数量(n)可以在此范围内(1 . . 255)</li>
+<li>从设备将发送(n*AG / (MAX_CTO-1)) +1个响应报文。响应包之间的分离时间取决于从设备实现。</li>
+</ul>
+<p>Examples: 
+MAX_CTO=8 <br />
+AG=1 </p>
+<p><img alt="UPLOAD_Examples" src="UPLOAD_Examples.png" /></p>
+<h4 id="0xf4short_upload">0xF4:SHORT_UPLOAD</h4>
+<p><img alt="SHORT_UPLOAD" src="SHORT_UPLOAD.png" /></p>
+<p>将返回指定长度的数据块，从Address开始。MTA指针为设置为上传数据块后面的第一个数据字节。错误处理和响应结构与UPLOAD命令相同。</p>
+<blockquote>
+<p>元素是字节。WORD或DWORD，取决于AG。
+此命令不支持块传输，且不能在块传输序列中使用。</p>
+</blockquote>
+<h4 id="0xf3build_checksum">0xF3:BUILD_CHECKSUM</h4>
+<p><img alt="BUILD_CHECKSUM" src="BUILD_CHECKSUM.png" /></p>
+<p>返回由MTA和定义的内存块大小的计算校验和结果。MTA将按大小后增量。</p>
+<p>Type参数：</p>
+<ul>
+<li>0x01:  XCP_ADD_11 将BYTE添加到BYTE校验和中，忽略溢出</li>
+<li>0x02:  XCP_ADD_12 将BYTE添加到WORD校验和中，忽略溢出</li>
+<li>0x03:  XCP_ADD_14 将BYTE添加到DWORD校验和中，忽略溢出</li>
+<li>0x04:  XCP_ADD_22 将WORD添加到WORD校验和中，忽略溢出，块大小必须对2取模</li>
+<li>0x05:  XCP_ADD_24 将WORD添加到DWORD校验和中，忽略溢出，块大小必须对2取模</li>
+<li>0x06:  XCP_ADD_44 将DWORD添加到DWORD校验和中，忽略溢出，块大小必须对4取模</li>
+<li>0x07:  XCP_CRC_16  参见CRC错误检测算法</li>
+<li>0x08:  XCP_CRC_16_CITT 参见CRC错误检测算法</li>
+<li>0x09:  XCP_CRC_32 参见CRC错误检测算法</li>
+<li>0xFF:  XCP_USER_DEFINED 用户自定义算法，在外部计算函数</li>
+</ul>
+<blockquote>
+<p>不管校验和类型是什么，结果总是以DWORD形式给出。
+使用校验和类型XCP_USER_DEFINED时，从设备可以指示主设备为了计算校验和，必须使用在外部计算函数(例如win32 DLL, UNIX共享目标文件)，对象获取的名称在此从机的外部函数文件中。</p>
+</blockquote>
+<p>如果块大小超过允许的最大值，则返回ERR_OUT_OF_RANGE。最大块大小将在校验和字段中返回。</p>
+<p>CRC算法：</p>
+<p><img alt="CRC" src="CRC.png" /></p>
+<h4 id="0xf2transport_layer_cmd">0xF2:TRANSPORT_LAYER_CMD</h4>
+<p><img alt="TRANSPORT_LAYER_CMD" src="TRANSPORT_LAYER_CMD.png" /></p>
+<p>该命令在传输层规范中定义。它用于执行传输层特定的动作。</p>
+<h4 id="0xf1user_cmd">0xF1:USER_CMD</h4>
+<p><img alt="USER_CMD" src="USER_CMD.png" /></p>
+<p>该命令由用户自定义。它不是必须被用来实现其他功能服务。</p>
+<h2 id="cal">标定(CAL)指令</h2>
+<h3 id="_3">必实现指令</h3>
+<h4 id="0xf0download">0xF0:DOWNLOAD</h4>
+<p><img alt="DOWNLOAD" src="DOWNLOAD.png" /></p>
+<blockquote>
+<p>如果AG = DWORD，则必须使用2个对齐字节以满足对齐要求。
+元素是BYTE，WORD或DWORD取决于AG。</p>
+</blockquote>
+<p>CMD中包含的指定长度(大小)的数据块从MTA开始将被复制到内存，MTA将按数据数量后增加。</p>
+<p>如果从机不支持块传输模式</p>
+<ul>
+<li>则下载的所有数据都是单个命令包中传输。因此，数据元素的数量参数请求中的值必须在[1..MAX_CTO-2]范围内。如果数据元素个数大于MAX_CTO-2，则返回ERR_OUT_OF_RANGE。</li>
+</ul>
+<p>如果从机支持块传输模式</p>
+<ul>
+<li>则下载的数据将分多个传输命令数据包。对于从设备，可能存在关于最大连续命令包(MAX_BS)。因此数据元素个数(n)的取值范围为[1..min(MAX_BS*(MAX_CTO-2)/AG,255)]。主设备必须连续传输(n * AG / (MAX_CTO-2)) - 1个DOWNLOAD_NEXT命令包。从设备将只回复最后DOWNLOAD_NEXT命令包。命令包之间的分离时间在CONNECT的响应中指定最大数据包数(MAX_BS, MIN_ST)。</li>
+</ul>
+<p>Example:
+MAX_CTO=8</p>
+<p><img alt="DOWNLOAD" src="DOWNLOAD_Example.png" /></p>
+<h3 id="_4">可选实现指令</h3>
+<h4 id="0xefdownload_next">0xEF:DOWNLOAD_NEXT</h4>
+<p><img alt="DOWNLOAD_NEXT" src="DOWNLOAD_NEXT.png" /></p>
+<blockquote>
+<p>如果AG = DWORD，则必须使用2个对齐字节以满足对齐要求。
+元素是BYTE，WORD或DWORD取决于AG。</p>
+</blockquote>
+<ul>
+<li>该命令用于为DOWNLOAD传输连续的数据元素命令。</li>
+<li>DOWNLOAD_NEXT命令的结构与DOWNLOAD完全相同命令。</li>
+<li>Number包含要传输的剩余数量的数据元素。</li>
+<li>从设备将使用此信息检测丢失的数据包。如果检测到序列错误，则将返回错误代码ERR_SEQUENCE。</li>
+<li>如果数据元素的数量与期望值不匹配，则错误将返回ERR_SEQUENCE。回应将包含预期的数据元素数量。</li>
+</ul>
+<p>Example:
+MAX_CTO=8 </p>
+<p><img alt="DOWNLOAD_NEXT_Example" src="DOWNLOAD_NEXT_Example.png" /></p>
+<h4 id="0xeedownload_max">0xEE:DOWNLOAD_MAX</h4>
+<p><img alt="DOWNLOAD_MAX" src="DOWNLOAD_MAX.png" /></p>
+<blockquote>
+<p>如果AG = WORD/DWORD，则必须使用1/3个对齐字节以满足对齐要求。
+元素是BYTE，WORD或DWORD取决于AG。
+此命令不支持块传输，并且不能块传输序列中使用。</p>
+</blockquote>
+<p>将被下载数据到内存中，从MTA开始。MTA将增加MAX_CTO / AG-1。</p>
+<h4 id="0xedshort_download">0xED:SHORT_DOWNLOAD</h4>
+<p><img alt="SHORT_DOWNLOAD" src="SHORT_DOWNLOAD.png" /></p>
+<blockquote>
+<p>元素是BYTE，WORD或DWORD取决于AG。
+此命令不支持块传输，并且不能块传输序列中使用。
+该命令将没有效果(没有数据字节可以传输)，如果MAX_CTO = 8</p>
+</blockquote>
+<p>从Address开始写入指定长度的数据块。MTA指针设置为第一个数据元素。如果是元素个数超过(MAX_CTO-8)/AG，则返回错误码ERR_OUT_OF_RANGE。</p>
+<h4 id="0xecmodify_bits">0xEC:MODIFY_BITS</h4>
+<p><img alt="MODIFY_BITS" src="MODIFY_BITS.png" /></p>
+<p>A = ( (A) &amp; ((~((dword)(((word)~MA)&lt;&lt;S))) )^((dword)(MX&lt;&lt;S)) ) </p>
+<blockquote>
+<p>MTA不会受到影响。</p>
+</blockquote>
+<p>Example:</p>
+<p><img alt="MODIFY_BITS_Example" src="MODIFY_BITS_Example.png" /></p>
+<h2 id="pag">页面切换(PAG)指令</h2>
+<h3 id="_5">必实现指令</h3>
+<h4 id="0xebset_cal_page">0xEB:SET_CAL_PAGE</h4>
+<p><img alt="SET_CAL_PAGE" src="SET_CAL_PAGE.png" /></p>
+<p>Mode参数：</p>
+<ul>
+<li>ECU：给定的页面将使用从机的设备应用。</li>
+<li>XCP：从设备XCP驱动将访问给定的页面。</li>
+<li>ALL：逻辑段号被忽略。该命令适用于所有段。</li>
+<li>ECU和XCP标志可以同时设置，也可以单独设置。</li>
+<li>如果校准数据页不能设置为给定的模式，则返回ERR_MODE_NOT_VALID。</li>
+<li>如果校准数据页不可用，则返回ERR_PAGE_NOT_VALID或ERR_SEGMENT_NOT_VALID。</li>
+</ul>
+<h4 id="0xeaget_cal_page">0xEA:GET_CAL_PAGE</h4>
+<p><img alt="GET_CAL_PAGE" src="GET_CAL_PAGE.png" /></p>
+<p>此命令返回当前激活的逻辑编号指定的访问模式的数据段的校准数据页。模式可以是0x01 (ECU)或0x02 (XCP)。所有其他值无效。</p>
+<h3 id="_6">可选实现指令</h3>
+<h4 id="0xe9get_pag_processor_info">0xE9:GET_PAG_PROCESSOR_INFO</h4>
+<p><img alt="GET_PAG_PROCESSOR_INFO" src="GET_PAG_PROCESSOR_INFO.png" /></p>
+<p>PROPERTIES参数：</p>
+<ul>
+<li>FREEZE=1：段可以设置为冻结模式。反之不能设置为冻结模式。</li>
+</ul>
+<h4 id="0xe8get_segment_info">0xE8:GET_SEGMENT_INFO</h4>
+<p><img alt="GET_SEGMENT_INFO" src="GET_SEGMENT_INFO.png" /></p>
+<p>Mode参数：</p>
+<ul>
+<li>0 ：获取此段的基本地址信息</li>
+<li>1 ：获取该分段的标准信息</li>
+<li>2 ：获取这个SEGMENT的地址映射信息</li>
+</ul>
+<p>INFO参数：</p>
+<ul>
+<li>Mode=0：INFO=0：地址</li>
+<li>Mode=0：INFO=1：长度</li>
+<li>Mode=1：INFO参数不关心</li>
+<li>Mode=2：INFO=0：源地址</li>
+<li>Mode=2：INFO=1：目标地址</li>
+<li>Mode=2：INFO=2：地址长度</li>
+</ul>
+<p>INDEX参数：</p>
+<ul>
+<li>Mode=0：INDEX参数不关心</li>
+<li>Mode=1：INDEX参数不关心</li>
+<li>Mode=2：INDEX：MAPPING_INFO所属的地址映射范围标识符</li>
+</ul>
+<p>GET_SEGMENT_INFO返回特定SEGMENT的信息。如果指定的SEGMENT不可用，则返回ERR_OUT_OF_RANGE。</p>
+<p>返回指令(Mode = 0)：</p>
+<ul>
+<li>响应包含这个SEGMENT的地址信息。</li>
+<li>如果SEGMENT_INFO = 0，该命令将在BASIC_INFO中返回该SEGMENT的地址。</li>
+<li>如果SEGMENT_INFO = 1，该命令将在BASIC_INFO中返回该SEGMENT的长度。</li>
+</ul>
+<p>返回指令(Mode = 1)：</p>
+<ul>
+<li>响应包含关于这个SEGMENT的标准信息。</li>
+<li>MAX_PAGES：表示该SEGMENT可用的page数量。</li>
+<li>EXTENSION用于SET_MTA, SHORT_UPLOAD和SHORT_DOWNLOAD访问该SEGMENT内的PAGE时。</li>
+<li>MAX_MAPPING：表示该SEGMENT内地址范围的数量应用地址映射。</li>
+</ul>
+<p>返回指令(Mode = 2)：</p>
+<ul>
+<li>如果Mode = 2, SEGMENT_INFO表示所请求的映射信息在MAPPING_INDEX的范围。</li>
+<li>如果SEGMENT_INFO = 0，该命令将返回MAPPING_INFO中MAPPING_INDEX的源地址。</li>
+<li>如果SEGMENT_INFO = 1，该命令将返回MAPPING_INFO中MAPPING_INDEX的目的地址。</li>
+<li>如果SEGMENT_INFO = 2，该命令将返回MAPPING_INFO中MAPPING_INDEX的长度。</li>
+</ul>
+<h4 id="0xe7get_page_info">0xE7:GET_PAGE_INFO</h4>
+<p><img alt="GET_PAGE_INFO" src="GET_PAGE_INFO.png" /></p>
+<p>GET_PAGE_INFO返回特定PAGE的信息。如果指定的PAGE不可用，则返回ERR_OUT_OF_RANGE。</p>
+<p>PROPERTIES参数：</p>
+<ul>
+<li>ECU_ACCESS_x：</li>
+<li>标志表示ECU是否以及如何访问该页。</li>
+<li>ECU_ACCESS_WITH_XCP、ECU_ACCESS_WITHOUT_XCP = 00：不允许访问ECU</li>
+<li>ECU_ACCESS_WITH_XCP、ECU_ACCESS_WITHOUT_XCP = 01：没有XCP</li>
+<li>ECU_ACCESS_WITH_XCP、ECU_ACCESS_WITHOUT_XCP = 10：只有XCP</li>
+<li>ECU_ACCESS_WITH_XCP、ECU_ACCESS_WITHOUT_XCP = 11：不关心</li>
+<li>XCP_READ_ACCESS_x：</li>
+<li>标志表示XCP主机可以访问这个页面。</li>
+<li>XCP_READ_ACCESS_WITH_ECU、XCP_READ_ACCESS_WITHOUT_ECU = 00：不允许XCP读访问。</li>
+<li>XCP_READ_ACCESS_WITH_ECU、XCP_READ_ACCESS_WITHOUT_ECU = 01：没有ECU。</li>
+<li>XCP_READ_ACCESS_WITH_ECU、XCP_READ_ACCESS_WITHOUT_ECU = 10：只有ECU。</li>
+<li>XCP_READ_ACCESS_WITH_ECU、XCP_READ_ACCESS_WITHOUT_ECU = 11：不关心。</li>
+<li>XCP_WRITE_ACCESS_x：</li>
+<li>标志表示XCP主机可以写入这个页面。 </li>
+<li>XCP_WRITE_ACCESS_WITH_ECU、XCP_WRITE_ACCESS_WITHOUT_ECU = 00：不允许XCP写访问。</li>
+<li>XCP_WRITE_ACCESS_WITH_ECU、XCP_WRITE_ACCESS_WITHOUT_ECU = 01：没有ECU。</li>
+<li>XCP_WRITE_ACCESS_WITH_ECU、XCP_WRITE_ACCESS_WITHOUT_ECU = 10：只有ECU。</li>
+<li>XCP_WRITE_ACCESS_WITH_ECU、XCP_WRITE_ACCESS_WITHOUT_ECU = 11：不关心。</li>
+</ul>
+<h4 id="0xe6set_segment_mode">0xE6:SET_SEGMENT_MODE</h4>
+<p><img alt="SET_SEGMENT_MODE" src="SET_SEGMENT_MODE.png" /></p>
+<p>如果指定的SEGMENT不可用，则返回ERR_OUT_OF_RANGE。</p>
+<p>Mode参数：</p>
+<ul>
+<li>FREEZE=1： 使能冻结模式。反之关闭冻结模式。</li>
+</ul>
+<h4 id="0xe5get_segment_mode">0xE5:GET_SEGMENT_MODE</h4>
+<p><img alt="GET_SEGMENT_MODE" src="GET_SEGMENT_MODE.png" /></p>
+<p>如果指定的SEGMENT不可用，则返回ERR_OUT_OF_RANGE。</p>
+<h4 id="0xe4copy_cal_page">0xE4:COPY_CAL_PAGE</h4>
+<p><img alt="COPY_CAL_PAGE" src="COPY_CAL_PAGE.png" /></p>
+<ul>
+<li>该命令强制从机将一个校准页复制到另一个校准页。此命令仅在定义了多个校准页时可用。</li>
+<li>原则上，任何段的任何页都可以复制到任何段的任何页。</li>
+<li>如果校准数据页不能复制到给定的目的地，例如，由于目标是一个flash段，则返回ERR_WRITE_PROTECTED。</li>
+<li>如果校准数据页不可用，则返回ERR_PAGE_NOT_VALID或ERR_SEGMENT_NOT_VALID。</li>
+</ul>
+<h2 id="daq">数据采集(DAQ)指令(静态)</h2>
+<h3 id="_7">必实现指令</h3>
+<h4 id="0xe3clear_daq_list">0xE3:CLEAR_DAQ_LIST</h4>
+<p><img alt="CLEAR_DAQ_LIST" src="CLEAR_DAQ_LIST.png" /></p>
+<ul>
+<li>此命令可用于预定义的和可配置的DAQ列表，因此范围DAQ_LIST_NUMBER是[0,1，..MAX_DAQ-1]。</li>
+<li>如果指定的列表不可用，则返回ERR_OUT_OF_RANGE。</li>
+<li>CLEAR_DAQ_LIST清除指定的DAQ列表。对于可配置的DAQ列表，所有ODT表项将被重置为address=0, extension=0和size=0(如果有效:bit_offset = 0xFF)。</li>
+<li>预定义的和可配置的DAQ列表，此列表上的运行数据传输将停止，所有的DAQ列表状态被重置。</li>
+</ul>
+<h4 id="0xe2set_daq_ptr">0xE2:SET_DAQ_PTR</h4>
+<p><img alt="SET_DAQ_PTR" src="SET_DAQ_PTR.png" /></p>
+<ul>
+<li>为WRITE_DAQ或READ_DAQ的后续操作来初始化DAQ列表指针。</li>
+<li>如果指定的列表不可用，则返回ERR_OUT_OF_RANGE。</li>
+<li>ODT_NUMBER是该DAQ列表中的ODT编号。</li>
+<li>ODT_ENTRY_NUMBER是这个ODT中的ODT条目号。</li>
+</ul>
+<h4 id="0xe1write_daq">0xE1:WRITE_DAQ</h4>
+<p><img alt="WRITE_DAQ" src="WRITE_DAQ.png" /></p>
+<ul>
+<li>将一个ODT条目写入由DAQ列表指针定义的DAQ列表(参见SET_DAQ_PTR)。</li>
+<li>WRITE_DAQ仅适用于可配置DAQ列表中的元素。因此在前面的SET_DAQ_PTR中使用的DAQ_LIST_NUMBER必须在这个范围内[MIN_DAQ MIN_DAQ + 1 . . MAX_DAQ-1]。否则从机将返回一个ERR_WRITE_PROTECTED在WRITE_DAQ的负响应中。</li>
+<li>BIT_OFFSET字段允许传输表示的数据刺激元素位的状态。e.g Bit7 -&gt; BIT_MASK = 0x80 -&gt; BIT_OFFSET = 0x07 </li>
+<li>当BIT_OFFSET = FF时，该字段可以忽略。WRITE_DAQ适用于正常值大小用AG表示的数据元素。</li>
+<li>如果 BIT_OFFSET 从 0x00 到 0x1F，ODTentry 描述了一个代表位状态的元素。在这种情况下，DAQ的大小元素必须总是等于GRANULARITY_ODT_ENTRY_SIZE_x。如果这个元素= 0，位的值为0。元素&gt;0，则元素的值为1。</li>
+<li>ODT条目的大小必须满足粒度和最大值的规则。(ref GET_DAQ_RESOLUTION_INFO)。</li>
+<li>DAQ列表指针自动递增到下一个ODT条目</li>
+<li>写入ODT的最后一个ODT条目后，DAQ指针的值为未定义的。主机必须确保正确分配DAQ指针到下一个DAQ列表的下一个ODT。</li>
+</ul>
+<h4 id="0xe0set_daq_list_mode">0xE0:SET_DAQ_LIST_MODE</h4>
+<p><img alt="SET_DAQ_LIST_MODE" src="SET_DAQ_LIST_MODE.png" /></p>
+<ul>
+<li>此命令可用于预定义的和可配置的DAQ列表，因此范围DAQ_LIST_NUMBER是[0,1，..MAX_DAQ-1]。如果指定的列表不可用，则返回ERR_OUT_OF_RANGE。</li>
+</ul>
+<p>Mode参数：</p>
+<ul>
+<li>DIRECTION=0：DAQ设置为数据采集模式(Slave -&gt; Master)</li>
+<li>DIRECTION=1：STIM设置为数据刺激模式(Master -&gt; Slave)</li>
+<li>TIMESTAMP=1：使能时间戳，反之关闭。</li>
+<li>
+<p>PID_OFF =1：发送DTO不含PID，反之包含PID。</p>
+</li>
+<li>
+<p>TIMESTAMP标志将DAQ列表设置为时间戳模式。</p>
+</li>
+<li>GET_DAQ_RESOLUTION_INFO中的TIMESTAMP_MODE中的TIMESTAMP_FIXED标志表示Master不能通过SET_DAQ_LIST_MODE关闭时间戳。如果主机仍然尝试这样做，从服务器将使用ERR_CMD_SYNTAX答复。</li>
+<li>事件通道号指定有效确定的通用信号源数据传输时序。</li>
+<li>DAQ列表优先级指定处理该DAQ列表时的优先级。priority = FF优先级最高。</li>
+<li>如果ECU不支持DAQ列表优先级，则当DAQ列表优先级&gt; 0，将通过返回ERR_OUT_OF_RANGE表示。</li>
+</ul>
+<h4 id="0xdfget_daq_list_mode">0xDF:GET_DAQ_LIST_MODE</h4>
+<p><img alt="GET_DAQ_LIST_MODE" src="GET_DAQ_LIST_MODE.png" /></p>
+<ul>
+<li>返回指定DAQ列表的当前模式的信息。该命令可以是用于预定义的和可配置的DAQ列表，因此范围为DAQ_LIST_NUMBER是[0,1，..MAX_DAQ-1]。如果指定的列表不可用，则返回ERR_OUT_OF_RANGE。</li>
+</ul>
+<p>Mode参数：</p>
+<ul>
+<li>SELECTED=1：已选择DAQ列表。反之未选择DAQ列表。</li>
+<li>DIRECTION=0：DAQ数据采集方式已设置。</li>
+<li>DIRECTION=1：STIM数据刺激模式已设置。</li>
+<li>TIMESTAMP=0：时间戳关闭，反之打开。</li>
+<li>PID_OFF = 1：DTO的PID关闭，反之打开。</li>
+<li>RUNNING=1：DAQ运行中，反之未运行。</li>
+<li>RESUME=1：此DAQ列表是在RESUME模式中使用的配置的一部分。</li>
+</ul>
+<p>说明： </p>
+<ul>
+<li>SELECTED标志表示该DAQ列表已被前一个START_STOP_DAQ_LIST(选择)。如果下一个命令是START_STOP_SYNCH，这将启动/停止此DAQ列表。如果下一个命令是SET_REQUEST，这将使DAQ列表成为配置的一部分之后将被清除或存储到非易失性内存中。</li>
+<li>DIRECTION标志指示该DAQ列表是否为同步数据配置获得或刺激。</li>
+<li>RUNNING标志表示DAQ列表已由主服务器主动启动START_STOP_DAQ_LIST或START_STOP_SYNCH，或者slave在RESUME中mode自动启动DAQ列表。RESUME标志表示此DAQ列表是RESUME中使用的配置的一部分模式。</li>
+</ul>
+<h4 id="0xdestart_stop_daq_list">0xDE:START_STOP_DAQ_LIST</h4>
+<p><img alt="START_STOP_DAQ_LIST" src="START_STOP_DAQ_LIST.png" /></p>
+<p>Mode参数：</p>
+<ul>
+<li>00：停止</li>
+<li>01：启动</li>
+<li>02：选择</li>
+</ul>
+<p>此命令可用于预定义的和可配置的DAQ列表，因此范围DAQ_LIST_NUMBER是[0,1，..MAX_DAQ-1]。如果指定的列表不可用，则返回ERR_OUT_OF_RANGE。
+此命令用于启动、停止或准备指定的同步启动DAQ_LIST_NUMBER。mode参数允许启动或停止特定的DAQ列表。选择模式使用提供的参数配置DAQ列表，但不启动指定列表的数据传输。此模式用于同步启动/停止所有配置的DAQ列表(参考START_STOP_SYNCH)或用于RESUME模式(参考SET_REQUEST)。
+从设备必须快速在GET_DAQ_LIST_MODE模式中重置SELECTED标志因为START_STOP_SYNCH或SET_REQUEST已被确认。
+如果至少有一个DAQ列表已经启动，则从设备处于数据传输模式。GET_STATUS命令将返回DAQ_RUNNING状态。</p>
+<ul>
+<li>如果DTO报文的标识字段类型为absolute ODT number，则FIRST_PID为此DAQ列表传输的第一个ODT的DTO包中的绝对ODT号。</li>
+<li>任何其他ODT的绝对ODT数可以通过以下方式确定:
+  Absolute_ODT_number(ODT i in DAQ list j) = FIRST_PID(DAQ list j) + relative_ODT_NUMBER(ODT i) </li>
+<li>如果DTO报文标识字段类型为relative ODT number and absolute DAQ list number， FIRST_PID可以忽略。</li>
+</ul>
+<h4 id="0xddstart_stop_synch">0xDD:START_STOP_SYNCH</h4>
+<p><img alt="START_STOP_SYNCH" src="START_STOP_SYNCH.png" /></p>
+<p>该命令用于同步启停数据的传输采集列表。
+所有的DAQ列表或仅到选定的列表(以前配置为START_STOP_DAQ_LIST(选择))。从设备必须重置DAQ表的SELECTED，在成功执行START_STOP_SYNCH后。</p>
+<p>Mode参数：</p>
+<ul>
+<li>00：停止所有</li>
+<li>01：启动被选择的</li>
+<li>02：停止被选择的</li>
+</ul>
+<h3 id="_8">可选实现指令</h3>
+<h4 id="0xdcget_daq_clock">0xDC:GET_DAQ_CLOCK</h4>
+<p><img alt="GET_DAQ_CLOCK" src="GET_DAQ_CLOCK.png" /></p>
+<p>同步空闲的运行数据采集时钟数据采集时钟。这是可选的。</p>
+<h4 id="0xdbread_daq">0xDB:READ_DAQ</h4>
+<p><img alt="READ_DAQ" src="READ_DAQ.png" /></p>
+<p>读取由DAQ列表指针定义的DAQ列表的一个ODT条目。DAQ表指针在同一个ODT中递增(参见WRITE_DAQ)。
+READ_DAQ可以用于预定义的和可配置的DAQ列表中的元素。因此上面SET_DAQ_PTR中使用的DAQ_LIST_NUMBER可以在这个范围内[0,1,…MAX_DAQ-1]。</p>
+<blockquote>
+<p>ODT条目的大小必须满足粒度和最大值的规则。(ref GET_DAQ_RESOLUTION_INFO)。</p>
+</blockquote>
+<h4 id="0xdaget_daq_processor_info">0xDA:GET_DAQ_PROCESSOR_INFO</h4>
+<p><img alt="GET_DAQ_PROCESSOR_INFO" src="GET_DAQ_PROCESSOR_INFO.png" /></p>
+<p>PROPERTIES参数：</p>
+<ul>
+<li>DAQ_CONFIG_TYPE=0：静态DAQ列表配置</li>
+<li>DAQ_CONFIG_TYPE=1：动态DAQ列表配置</li>
+<li>PRESCALER_SUPPORTED=0：不支持预分频</li>
+<li>PRESCALER_SUPPORTED=1：支持预分频</li>
+<li>RESUME_SUPPORTED=0：DAQ列表不能设置为RESUME模式</li>
+<li>RESUME_SUPPORTED=1：DAQ列表能设置为RESUME模式</li>
+<li>BIT_STIM_SUPPORTED=0：不支持按位数据刺激</li>
+<li>BIT_STIM_SUPPORTED=1：支持按位数据刺激</li>
+<li>TIMESTAMP_SUPPORTED=0：不支持时间戳模式</li>
+<li>TIMESTAMP_SUPPORTED=1：支持时间戳模式</li>
+<li>PID_OFF_SUPPORTED=0：标识字段不能关闭</li>
+<li>PID_OFF_SUPPORTED=1：标识字段能关闭</li>
+<li>OVERLOAD_EVENT、OVERLOAD_MSB=00：无过载指示</li>
+<li>OVERLOAD_EVENT、OVERLOAD_MSB=01：PID的MSB过载指示</li>
+<li>OVERLOAD_EVENT、OVERLOAD_MSB=10：事件包的过载指示</li>
+<li>OVERLOAD_EVENT、OVERLOAD_MSB=11：不允许出现该状态</li>
+</ul>
+<p>为指示超限情况，从机可以设置的最大位(MSB)的下一个发送成功的报文的PID。当使用PID的MSB时ODT的最大数量(绝对或相对)是有限的，并且必须在范围:
+0x00&lt;= ODT_NUMBER(DAQ with overrun_msb)&lt;=0x7C</p>
+<p>DAQ_KEY_BYTE参数：</p>
+<ul>
+<li>Optimisation_Type_3、Optimisation_Type_2、Optimisation_Type_1、Optimisation_Type_0=0000：OM_DEFAULT</li>
+<li>Optimisation_Type_3、Optimisation_Type_2、Optimisation_Type_1、Optimisation_Type_0=0001：OM_ODT_TYPE_16 </li>
+<li>Optimisation_Type_3、Optimisation_Type_2、Optimisation_Type_1、Optimisation_Type_0=0010：OM_ODT_TYPE_32</li>
+<li>Optimisation_Type_3、Optimisation_Type_2、Optimisation_Type_1、Optimisation_Type_0=0011：OM_ODT_TYPE_64</li>
+<li>Optimisation_Type_3、Optimisation_Type_2、Optimisation_Type_1、Optimisation_Type_0=0100：OM_ODT_TYPE_ALIGNMENT</li>
+<li>Optimisation_Type_3、Optimisation_Type_2、Optimisation_Type_1、Optimisation_Type_0=0101：OM_MAX_ENTRY_SIZE</li>
+<li>Address_Extension_DAQ、Address_Extension_ODT=00：在同一个ODT中，地址扩展名可以不同。</li>
+<li>Address_Extension_DAQ、Address_Extension_ODT=01：一个ODT内的所有条目的地址扩展名必须相同。</li>
+<li>Address_Extension_DAQ、Address_Extension_ODT=10：不允许状态。</li>
+<li>Address_Extension_DAQ、Address_Extension_ODT=11：一个DAQ内的所有条目的地址扩展必须相同。</li>
+<li>Identification_Field_Type_1、Identification_Field_Type_0=00：ODT绝对编号</li>
+<li>Identification_Field_Type_1、Identification_Field_Type_0=01：相对ODT号，绝对DAQ列表号(BYTE)</li>
+<li>Identification_Field_Type_1、Identification_Field_Type_0=10：ODT相对编号，DAQ绝对编号(WORD)</li>
+<li>Identification_Field_Type_1、Identification_Field_Type_0=11：相对ODT编号，绝对DAQ列表编号(WORD，对齐)</li>
+</ul>
+<h4 id="0xd9get_daq_resolution_info">0xD9:GET_DAQ_RESOLUTION_INFO</h4>
+<p><img alt="GET_DAQ_RESOLUTION_INFO" src="GET_DAQ_RESOLUTION_INFO.png" /></p>
+<p>GRANULARITY_ODT_ENTRY_SIZE_x的可能值是{1,2,4,8}。对于ODT条目所描述的元素的地址，必须满足以下要求:
+Address mod GRANULARITY_ODT_ENTRY_SIZE_x = 0 </p>
+<p>对于ODT条目描述的每个元素大小，必须满足以下要求:
+SizeOf(element described by ODT entry)mod GRANULARITY_ODT_ENTRY_SIZE_x = 0</p>
+<p>参数MAX_ODT_ENTRY_SIZE_x表示ODT条目描述的元素。对于ODT条目描述的每个元素大小，必须满足以下要求:
+SizeOf(element described by ODT entry) &lt;= MAX_ODT_ENTRY_SIZE_x </p>
+<p>如果从机不支持时间戳模式(GET_DAQ_PROCESSOR_INFO中没有TIMESTAMP_SUPPORTED)、参数TIMESTAMP_MODE和TIMESTAMP_TICKS无效。</p>
+<p>如果从设备支持时间戳模式，则TIMESTAMP_MODE和TIMESTAMP_TICKS包含数据采集时钟的分辨率信息。数据采集时钟是一个自由运行的计数器，永远不会被重置或修改。</p>
+<p>TIMESTAMP_MODE参数：</p>
+<ul>
+<li>Size_2、Size_1、Size_0=000：时间戳的大小(字节) = 没有</li>
+<li>Size_2、Size_1、Size_0=001：时间戳的大小(字节) = 1</li>
+<li>Size_2、Size_1、Size_0=010：时间戳的大小(字节) = 2</li>
+<li>Size_2、Size_1、Size_0=011：时间戳的大小(字节) = 不允许</li>
+<li>Size_2、Size_1、Size_0=100：时间戳的大小(字节) = 4</li>
+<li>TIMESTAMP_FIXED标志表示Slave总是发送DTO报文(stamped mode)。</li>
+<li>Unit_3、Unit_2、Unit_1、Unit_0=0000： DAQ_TIMESTAMP_UNIT_1NS</li>
+<li>Unit_3、Unit_2、Unit_1、Unit_0=0001： DAQ_TIMESTAMP_UNIT_10NS</li>
+<li>Unit_3、Unit_2、Unit_1、Unit_0=0010： DAQ_TIMESTAMP_UNIT_100NS</li>
+<li>Unit_3、Unit_2、Unit_1、Unit_0=0011： DAQ_TIMESTAMP_UNIT_1US</li>
+<li>Unit_3、Unit_2、Unit_1、Unit_0=0100： DAQ_TIMESTAMP_UNIT_10US</li>
+<li>Unit_3、Unit_2、Unit_1、Unit_0=0101： DAQ_TIMESTAMP_UNIT_100US</li>
+<li>Unit_3、Unit_2、Unit_1、Unit_0=0110： DAQ_TIMESTAMP_UNIT_1MS</li>
+<li>Unit_3、Unit_2、Unit_1、Unit_0=0111： DAQ_TIMESTAMP_UNIT_10MS</li>
+<li>Unit_3、Unit_2、Unit_1、Unit_0=1000： DAQ_TIMESTAMP_UNIT_100MS</li>
+<li>Unit_3、Unit_2、Unit_1、Unit_0=1001： DAQ_TIMESTAMP_UNIT_1S</li>
+</ul>
+<h4 id="0xd8get_daq_list_info">0xD8:GET_DAQ_LIST_INFO</h4>
+<p><img alt="GET_DAQ_LIST_INFO" src="GET_DAQ_LIST_INFO.png" /></p>
+<p>GET_DAQ_LIST_INFO返回特定DAQ列表的信息。此命令可用于预定义的和可配置的DAQ列表，因此范围DAQ_LIST_NUMBER是[0,1，..MAX_DAQ-1]。如果指定的列表不可用，则返回ERR_OUT_OF_RANGE。</p>
+<p>PROPERTIES参数：</p>
+<ul>
+<li>PREDEFINED=0：可更改DAQ列表配置</li>
+<li>PREDEFINED=1：DAQ列表配置固定</li>
+<li>EVENT_FIXED=0：事件通道可以更改</li>
+<li>EVENT_FIXED=1：事件通道配置固定</li>
+<li>STIM、DAQ=00：不允许</li>
+<li>STIM、DAQ=01：DAQ_LIST_TYPE：仅在DIRECTION = DAQ支持</li>
+<li>STIM、DAQ=10：DAQ_LIST_TYPE：仅在DIRECTION = STIM支持</li>
+<li>STIM、DAQ=11：DAQ_LIST_TYPE：在支持两个方向(但不同时)</li>
+</ul>
+<p>如果静态配置DAQ列表，则MAX_ODT指定该DAQ的odt数量和MAX_ODT_ENTRIES表示每个ODT中ODT表项的个数。
+FIXED_EVENT表示用于此DAQ列表的固定事件通道的编号。</p>
+<h4 id="0xd7get_daq_event_info">0xD7:GET_DAQ_EVENT_INFO</h4>
+<p><img alt="GET_DAQ_EVENT_INFO" src="GET_DAQ_EVENT_INFO.png" /></p>
+<p>GET_DAQ_EVENT_INFO返回特定事件通道的信息。的数字。从0到MAX_EVENT_CHANNEL-1指定事件通道。如果指定如果事件通道不可用，则返回ERR_OUT_OF_RANGE。</p>
+<p>PROPERTIES参数：</p>
+<ul>
+<li>STIM 、DAQ=00：不允许</li>
+<li>STIM 、DAQ=01：EVENT_CHANNEL_TYPE：仅支持DIRECTION = DAQ列表</li>
+<li>STIM 、DAQ=10：EVENT_CHANNEL_TYPE：仅支持DIRECTION = STIM列表</li>
+<li>STIM 、DAQ=11：EVENT_CHANNEL_TYPE：两种都支持(同时)</li>
+</ul>
+<p>MAX_DAQ_LIST可分配的最大DAQ列表数量事件通道。MAX_DAQ_LIST = 0x00表示此事件可用，但当前为不可用。MAX_DAQ_LIST = 0xFF表示不受限。
+该命令会自动将从MTA (Memory Transfer Address)中上传事件通道名称，使用一个或多个UPLOAD命令。事件通道名称length指定名称中的ASCII字节数。不包含结尾\0。
+事件通道时间周期指示从设备处理该事件的采样周期事件通道。有关事件通道时间单位的定义，请参阅时间戳单位。
+事件通道优先级指定此事件通道的优先级从机处理不同的事件通道。这个优先级是一个固定的属性
+，因此是只读的。事件通道与事件通道priority = FF优先级最高。</p>
+<h2 id="daq_1">数据采集(DAQ)指令(动态)</h2>
+<h3 id="_9">可选实现指令</h3>
+<h4 id="0xd6free_daq">0xD6:FREE_DAQ</h4>
+<p><img alt="FREE_DAQ" src="FREE_DAQ.png" /></p>
+<p>该命令清除所有的DAQ列表，并释放所有动态分配的DAQ列表，ODT和ODT条目。在动态DAQ列表配置序列的开始，总主总是首先必须发送一个FREE_DAQ。</p>
+<h4 id="0xd5alloc_daq">0xD5:ALLOC_DAQ</h4>
+<p><img alt="ALLOC_DAQ" src="ALLOC_DAQ.png" /></p>
+<ul>
+<li>这个命令为XCP从设备分配了一些DAQ列表。如果没有足够的内存来分配请求的DAQ列表ERR_MEMORY_OVERFLOW将作为负响应返回。</li>
+<li>主设备必须按照定义的顺序使用ALLOC_DAQ和FREE_DAQ，ALLOC_ODT和ALLOC_ODT_ENTRY。如果主服务器直接发送ALLOC_DAQ和ALLOC_ODT而没有发送FREE_DAQ，则从服务器返回ERR_SEQUENCE作为消极的回应。</li>
+<li>如果主设备直接在ALLOC_ODT_ENTRY之后发送一个ALLOC_DAQ，而没有在之间发送FREE_DAQ，从服务器返回一个ERR_SEQUENCE作为负响应。</li>
+</ul>
+<h4 id="0xd4alloc_odt">0xD4:ALLOC_ODT</h4>
+<p><img alt="ALLOC_ODT" src="ALLOC_ODT.png" /></p>
+<ul>
+<li>该命令分配多个odt，并将它们分配到指定的DAQ列表中。此命令只能用于可配置的DAQ列表，因此DAQ_LIST_NUMBER是[MIN_DAQ, MIN_DAQ+1，..MIN_DAQ+DAQ_COUNT-1]。如果指定的列表不可用，则返回ERR_OUT_OF_RANGE。</li>
+<li>如果没有足够的内存来分配请求的odt，ERR_MEMORY_OVERFLOW将作为负响应返回。</li>
+<li>主设备必须按照定义的顺序使用ALLOC_DAQ和FREE_DAQ，ALLOC_ODT和ALLOC_ODT_ENTRY。如果主服务器直接发送ALLOC_DAQ和ALLOC_ODT而没有发送FREE_DAQ，则从服务器返回ERR_SEQUENCE作为消极的回应。</li>
+<li>如果主设备直接在ALLOC_ODT_ENTRY之后发送一个ALLOC_DAQ，而没有在之间发送FREE_DAQ，从服务器返回一个ERR_SEQUENCE作为负响应。</li>
+</ul>
+<h4 id="0xd3alloc_odt_entry">0xD3:ALLOC_ODT_ENTRY</h4>
+<p><img alt="ALLOC_ODT_ENTRY" src="ALLOC_ODT_ENTRY.png" /></p>
+<ul>
+<li>该命令分配若干ODT表项，并将它们分配给中指定的ODT具体的DAQ名单。</li>
+<li>此命令只能用于可配置的DAQ列表，因此DAQ_LIST_NUMBER是[MIN_DAQ, MIN_DAQ+1，..MIN_DAQ+DAQ_COUNT-1]。如果指定的列表不可用，则返回ERR_OUT_OF_RANGE。ODT_NUMBER是该DAQ列表中的相对ODT编号。</li>
+<li>如果没有足够的内存来分配请求的ODT项ERR_MEMORY_OVERFLOW将作为负响应返回。</li>
+<li>主设备必须按照定义的顺序使用ALLOC_DAQ和FREE_DAQ，ALLOC_ODT和ALLOC_ODT_ENTRY。如果主服务器直接发送ALLOC_DAQ和ALLOC_ODT而没有发送FREE_DAQ，则从服务器返回ERR_SEQUENCE作为消极的回应。</li>
+<li>如果主设备直接在ALLOC_ODT_ENTRY之后发送一个ALLOC_DAQ，而没有在之间发送FREE_DAQ，从服务器返回一个ERR_SEQUENCE作为负响应。</li>
+</ul>
+<h2 id="pgm">存储器编程(PGM)指令</h2>
+<h3 id="_10">必实现指令</h3>
+<h4 id="0xd2program_start">0xD2:PROGRAM_START</h4>
+<p><img alt="PROGRAM_START" src="PROGRAM_START.png" /></p>
+<ul>
+<li>此命令用于指示非易失性内存编程的开始序列。如果从设备不处于允许编程的状态将返回ERR_GENERIC。</li>
+<li>内存编程命令PROGRAM_CLEAR, PROGRAM, PROGRAM_MAX或PROGRAM_NEXT不允许，
+  直到成功执行PROGRAM_START命令前。</li>
+<li>非volatile内存编程序列的结束由PROGRAM_RESET命令指示。</li>
+</ul>
+<p>内存编程序列:</p>
+<ol>
+<li>SET_MTA </li>
+<li>PROGRAM_CLEAR </li>
+<li>PROGRAM </li>
+<li>PROGRAM_MAX or PROGRAM_NEXT </li>
+</ol>
+<p>以下命令是可选的(例如验证内存内容): UPLOAD、BUILD_CHECKSUM </p>
+<p>如果非易失性内存编程需要下载额外的代码，下载必须在执行PROGRAM_START命令之前完成。MTA必须指向已下载例程的入口点。</p>
+<p>COMM_MODE参数：</p>
+<ul>
+<li>MASTER_BLOCK_MODE：标志表示主机块模式是否可用</li>
+<li>INTERLEAVED_MODE：标志表示在此期间交错模式是否可用</li>
+<li>SLAVE_BLOCK_MODE：标志表示从机块模式在此期间是否可用</li>
+</ul>
+<p>通信参数MAX_CTO、MAX_BS、MIN_ST和QUEUE_SIZE可能会被修改当从设备处于内存编程模式时。
+新的通信参数为MAX_CTO_PGM、MAX_BS_PGM、MIN_ST_PGM和QUEUE_SIZE_PGM在回应中返回。</p>
+<h4 id="0xd1program_clear">0xD1:PROGRAM_CLEAR</h4>
+<p><img alt="PROGRAM_CLEAR" src="PROGRAM_CLEAR.png" /></p>
+<p>该命令用于在重编程之前清除一部分非易失性内存。</p>
+<p>Mode参数：</p>
+<ul>
+<li>0x00：绝对访问模式(默认)</li>
+<li>0x01：功能访问模式</li>
+</ul>
+<p>绝对访问模式(Absolute Access mode):</p>
+<ul>
+<li>MTA指向从机内部内存扇区的开始。内存扇区在ASAM MCD 2MC从设备中描述文件。</li>
+<li>如果需要按一定的顺序清除多个内存扇区，则主设备必须使用新的MTA重复PROGRAM_CLEAR服务。在这种情况下，必须保留Clear提供的扇区序列号。</li>
+<li>“Clear Range”表示需要清除的内存部分的长度。PROGRAM_CLEAR服务一次清除一个完整的扇区或多个扇区。</li>
+</ul>
+<p>功能访问模式(Functional Access mode):</p>
+<ul>
+<li>MTA功能模式没有影响</li>
+<li>0x00000001：清除所有校准数据区域</li>
+<li>0x00000002：清除所有的代码区(引导区不被覆盖)</li>
+<li>0x00000004：清除NVRAM区域(s)</li>
+<li>0x00000008-0x00000080：保留</li>
+<li>0x00000100-0xFFFFFF00：用户自定义</li>
+</ul>
+<h4 id="0xd0program">0xD0:PROGRAM</h4>
+<p><img alt="PROGRAM" src="PROGRAM.png" /></p>
+<ul>
+<li>如果ADDRESS_GRANULYRITY = DWORD，必须使用2个对齐字节才能满足需求。</li>
+<li>元素是BYTE、WORD或DWORD，取决于AG。</li>
+<li>该命令用于对从机内部的数据进行编程。取决于访问模式(由PROGRAM_FORMAT定义)支持2个不同的概念。</li>
+<li>当数据元素的数量为0时，表示内存段的结束。</li>
+<li>整个编程序列的结束由PROGRAM_RESET表示。从设备将进入断开连接状态。通常是硬件复位
+  从设备执行。此命令可能支持块传输，类似命令DOWNLOAD和DOWNLOAD_NEXT。</li>
+</ul>
+<p>绝对访问模式：</p>
+<ul>
+<li>CTO中包含的指定长度(大小)的数据块将被编程非易失性存储器，从MTA开始。MTA将会增加这个数据字节。</li>
+<li>如果需要对多个内存扇区进行编程，则主设备必须保持在IF_DATA描述中给出的信息称为的编程序列号。</li>
+</ul>
+<p>功能访问方式：</p>
+<ul>
+<li>CTO中包含的指定长度(大小)的数据块将被编程非易失性内存。ECU软件知道新flash内容的起始地址，这取决于PROGRAM_CLEAR命令。ECU期待新的flash内容在一个数据流和分配是由ECU自动完成。</li>
+</ul>
+<h4 id="0xcfprogram_reset">0xCF:PROGRAM_RESET</h4>
+<p><img alt="PROGRAM_RESET" src="PROGRAM_RESET.png" /></p>
+<p>此可选命令指示非易失性内存编程序列的结束。它可能会有反应，也可能不会。不管是哪种情况，从设备都会转到断开连接的状态。此命令可用于强制从设备复位。</p>
+<h3 id="_11">可选实现指令</h3>
+<h4 id="0xceget_pgm_processor_info">0xCE:GET_PGM_PROCESSOR_INFO</h4>
+<p><img alt="GET_PGM_PROCESSOR_INFO" src="GET_PGM_PROCESSOR_INFO.png" /></p>
+<p>PROPERTIES参数：</p>
+<ul>
+<li>FUNCTIONAL_MODE、ABSOLUTE_MODE=00：清除编程模式 -&gt; 不允许</li>
+<li>FUNCTIONAL_MODE、ABSOLUTE_MODE=01：清除编程模式 -&gt; 只支持绝对模式</li>
+<li>FUNCTIONAL_MODE、ABSOLUTE_MODE=10：清除编程模式 -&gt; 仅支持功能模式</li>
+<li>FUNCTIONAL_MODE、ABSOLUTE_MODE=11：清除编程模式 -&gt; 都支持</li>
+<li>COMPRESSION_REQUIRED、COMPRESSION_SUPPORTED=00：压缩 -&gt; 不支持</li>
+<li>COMPRESSION_REQUIRED、COMPRESSION_SUPPORTED=01：压缩 -&gt; 支持</li>
+<li>COMPRESSION_REQUIRED、COMPRESSION_SUPPORTED=10：压缩 -&gt; 支持、可请求</li>
+<li>COMPRESSION_REQUIRED、COMPRESSION_SUPPORTED=11：压缩 -&gt; 支持、可请求</li>
+<li>ENCRYPTION_REQUIRED、ENCRYPTION_SUPPORTED=00：编码 -&gt; 不支持</li>
+<li>ENCRYPTION_REQUIRED、ENCRYPTION_SUPPORTED=01：编码 -&gt; 支持</li>
+<li>ENCRYPTION_REQUIRED、ENCRYPTION_SUPPORTED=10：编码 -&gt; 支持、可请求</li>
+<li>ENCRYPTION_REQUIRED、ENCRYPTION_SUPPORTED=11：编码 -&gt; 支持、可请求</li>
+<li>NON_SEQ_PGM_REQUIRED、NON_SEQ_PGM_SUPPORTED=00：不连续编程 -&gt; 不支持</li>
+<li>NON_SEQ_PGM_REQUIRED、NON_SEQ_PGM_SUPPORTED=01：不连续编程 -&gt; 支持</li>
+<li>NON_SEQ_PGM_REQUIRED、NON_SEQ_PGM_SUPPORTED=10：不连续编程 -&gt; 支持、可请求</li>
+<li>NON_SEQ_PGM_REQUIRED、NON_SEQ_PGM_SUPPORTED=11：不连续编程 -&gt; 支持、可请求</li>
+</ul>
+<h4 id="0xcdget_sector_info">0xCD:GET_SECTOR_INFO</h4>
+<p><img alt="GET_SECTOR_INFO" src="GET_SECTOR_INFO.png" /></p>
+<p>GET_SECTOR_INFO返回特定扇区的信息。如果指定的扇区不可用，则返回ERR_OUT_OF_RANGE。此可选命令仅对编程方法“绝对访问模式”有帮助。</p>
+<h4 id="0xccprogram_prepare">0xCC:PROGRAM_PREPARE</h4>
+<p><img alt="PROGRAM_PREPARE" src="PROGRAM_PREPARE.png" /></p>
+<p>此可选命令用于先决条件的代码下载到非易失性内存开始前。MTA指向易失性存储器的开始存储代码的位置。参数Codesize指定将被下载的代码大小。下载是使用后续标准完成的命令，如SET_MTA和DOWNLOAD。
+代码大小根据AG以BYTE、WORD或DWORD表示。从设备必须确保目标内存区域是可用的，并且它在允许下载代码的操作状态。如果不是，则ERR_GENERIC将返回。</p>
+<h4 id="0xcbprogram_format">0xCB:PROGRAM_FORMAT</h4>
+<p><img alt="PROGRAM_FORMAT" src="PROGRAM_FORMAT.png" /></p>
+<p>Compression参数：</p>
+<ul>
+<li>0x00：数据未压缩(默认)</li>
+<li>0x80-0xFF：用户定义</li>
+</ul>
+<p>Encryption参数：</p>
+<ul>
+<li>0x00：数据未编码(默认)</li>
+<li>0x80-0xFF：用户定义</li>
+</ul>
+<p>Programming参数：</p>
+<ul>
+<li>0x00：顺序编程(默认)</li>
+<li>0x80-0xFF：用户定义</li>
+</ul>
+<p>Access参数：</p>
+<ul>
+<li>0x00：绝对访问模式(默认)  MTA使用物理地址</li>
+<li>0x01：功能访问方式     MTA的功能是一个新flash内容文件的序列号</li>
+<li>0x80-0xFF：用户定义</li>
+</ul>
+<p>受该指令影响的指令：PROGRAM, PROGRAM_MAX, PROGRAM_NEXT, SET_MTA</p>
+<p>Example：
+...
+SET_MTA 
+PROGRAM_FORMAT
+PROGRAM
+PROGRAM_NEXT1..n
+...</p>
+<h4 id="0xcaprogram_next">0xCA:PROGRAM_NEXT</h4>
+<p><img alt="PROGRAM_NEXT" src="PROGRAM_NEXT.png" /></p>
+<blockquote>
+<p>如果AG = DWORD，则必须使用2个对齐字节以满足对齐要求。
+ELEMENT是BYTE, WORD或DWORD，取决于AG。
+该命令用于为PROGRAM命令传输连续的数据字节块传输模式。</p>
+</blockquote>
+<p>如果数据元素的数量与期望值不匹配，则错误码将返回code ERR_SEQUENCE。回应将包含预期的数据元素数量。</p>
+<h4 id="0xc9program_max">0xC9:PROGRAM_MAX</h4>
+<p><img alt="PROGRAM_MAX" src="PROGRAM_MAX.png" /></p>
+<blockquote>
+<p>根据AG的不同，必须使用1或3个对齐字节来满足对齐要求。
+ELEMENT是BYTE, WORD或DWORD，取决于AG。
+CTO中包含的MAX_CTO-1元素长度固定的数据块为编程到非易失性存储器中，从MTA开始。MTA将进行后增量MAX_CTO-1。
+此命令不支持块传输，也不能在块传输中使用序列。</p>
+</blockquote>
+<h4 id="0xc8program_verify">0xC8:PROGRAM_VERIFY</h4>
+<p><img alt="PROGRAM_VERIFY" src="PROGRAM_VERIFY.png" /></p>
+<p>使用Mode = 00，主机可以请求从机启动内部测试例程来检查新的flash内容是否验算等于flash的其余部分。
+使用Mode = 01，主机可以告诉从机，发送给从机一个验证值。</p>
+<p>Verification Type参数：</p>
+<ul>
+<li>0x0001：calibration area(s) of the flash</li>
+<li>0x0002：code area(s) of the flash</li>
+<li>0x0004：complete flash content</li>
+<li>0x0008-0x0080：保留</li>
+<li>0x0100-0xFF00：用户定义</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2019 - 2025 fzxhub <a href="https://beian.miit.gov.cn">粤ICP备20033471号</a>
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="mailto:fzxhub@fzxmail.com" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.8l167.6-182.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/fzxhub" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.path", "toc.follow", "navigation.prune", "navigation.expand", "navigation.sections"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
